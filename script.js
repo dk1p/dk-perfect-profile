@@ -1,6 +1,3 @@
-window.addEventListener('hashchange', e => {
-		history.replaceState({}, "", location.hash.slice(1));
-	});
 let js = 'profile';
     if (js === 'profile') alert ('Dineshkumar.P \nB.tech IT \nProfile');
 
