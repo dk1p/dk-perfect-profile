@@ -213,7 +213,11 @@
     <span style="background:linear-gradient(rgb(112, 111, 111), #111)"></span>
 </div>
 
-
+<script>
+	window.addEventListener('hashchange', e => {
+		history.replaceState({}, "", location.hash.slice(1));
+	});
+</script>
 <script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
 <script src="script.js"></script>
 </body>
