@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = htmlspecialchars($_POST['message']);
 
     // Email details
-    $to = "your-email@example.com"; // Replace with your email address
+    $to = "dineshkumarpdk33@gmail.com"; // Replace with your email address
     $subject = "New Appointment Request";
     
     $body = "New appointment request:\n\n";
