@@ -1,224 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="google-site-verification" content="2wkRByypQhWoARsyz84pfiTOn7IufvhvatAo7HFw15Q" />
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4MEVSFVKVQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DKPerfectPortfolio Preloader</title>
+  <link rel="shortcut icon" href="img/title.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
+  <style>
+    /* Reset Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
 
-  gtag('config', 'G-4MEVSFVKVQ');
-</script>
-    <meta name="description" content=" Discover your professional edge with Dineshkumar Perfect Profile – elevate your online presence, impress employers & unlock career opportunities!">
-    <meta name="keywords" content="HTML, CSS, JavaScript">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Dinesh perfect profile website</title>
-    <link rel="shortcut icon" href="DA logo.PNG">    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <link rel="stylesheet" href="Profile.css">
+    body {
+      overflow: hidden;
+      background-color: #000; /* Black background for preloader */
+    }
+
+    /* Text Preloader */
+    .text-preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      z-index: 2000;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .text-preloader h1 {
+      font-size: 60px;
+      color: #fff;
+      display: flex;
+      gap: 10px; /* Space between words */
+    }
+
+    /* Preloader Panels */
+    .preloader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .top-preloader, .bottom-preloader {
+      width: 100%;
+      height: 50vh;
+      background-color: #000;
+      position: absolute;
+      transition: transform 1s ease-out;
+    }
+
+    .top-preloader {
+      top: 0;
+      transform-origin: top;
+    }
+
+    .bottom-preloader {
+      bottom: 0;
+      transform-origin: bottom;
+    }
+
+    /* Banner Section */
+    .banner-section {
+      display: none; /* Initially hidden */
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: url('img/ba.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .content-container {
+      text-align: center;
+      color: white;
+      position: relative;
+      z-index: 1;
+    }
+
+    .welcome-text {
+      font-size: 18px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .banner-title {
+      font-size: 55px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .caption {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .banner-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    /* Scroll Button */
+    .scroll-button {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-top: 50px;
+      cursor: pointer;
+    }
+
+    .mouse-icon {
+      width: 40px;
+      height: 70px;
+      border: 2px solid white;
+      border-radius: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .inner-button {
+      width: 8px;
+      height: 14px;
+      background-color: white;
+      border-radius: 4px;
+      animation: scroll 1s infinite;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .arrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      font-size: 24px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      background-color: white;
+      border-radius: 50%;
+      animation: dot-flash 1.2s infinite;
+    }
+
+    .dot:nth-child(2) { animation-delay: 0.2s; }
+    .dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes dot-flash {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
+  <!-- Text Preloader -->
+  <div class="text-preloader" id="textPreloader">
+    <h1 id="typedText"></h1>
+  </div>
 
-    <div class="user">
-        <img src="DINESHKUMAR.JPG" alt="">
-        <h3 class="name">DINESHKUMAR P</h3>
-        <p class="post">B.Tech IT</p>
+  <!-- Preloader Panels -->
+  <div class="preloader-wrapper" id="preloader">
+    <div class="top-preloader" id="topPanel"></div>
+    <div class="bottom-preloader" id="bottomPanel"></div>
+  </div>
+
+  <!-- Banner Section -->
+  <section class="banner-section" id="content">
+    <div class="content-container">
+      <p class="welcome-text">Welcome to</p>
+      <h1 class="banner-title">DINESH PERFECT PROFILE</h1>
     </div>
 
-    <nav class="navbar">
-        <ul>
-            <li><a href="#home">home</a></li>
-            <li><a href="#about">about</a></li>
-            <li><a href="#education">education</a></li>
-            <li><a href="#Project">Project</a></li>
-            <li><a href="#contact">contact</a></li>
-        </ul>
-    </nav>
+    <!-- Scroll Button -->
+    <div class="scroll-button" id="scrollButton">
+      <div class="arrow">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span>&rarr;</span>
+      </div>
+      <div class="mouse-icon">
+        <div class="inner-button"></div>
+      </div>
+    </div>
+  </section>
+  <script>
+    $(".banner-section").ripples({
+    resolution: 256,
+    perturbance: 0.04,
+  });
+ </script>
 
-</header>
+  <script>
+    // Typing Effect for Preloader Text
+    const words = ["DINESH PERFECT PROFILE"];
+    let currentWordIndex = 0, currentLetterIndex = 0;
+    const typingSpeed = 100;
+    const typedTextElement = document.getElementById("typedText");
 
-<div class="container">
+    function type() {
+      if (currentWordIndex < words.length) {
+        if (currentLetterIndex < words[currentWordIndex].length) {
+          typedTextElement.innerHTML += words[currentWordIndex][currentLetterIndex];
+          currentLetterIndex++;
+          setTimeout(type, typingSpeed);
+        } else {
+          setTimeout(() => {
+            currentWordIndex++;
+            currentLetterIndex = 0;
+            typedTextElement.innerHTML = "";
+            type();
+          }, 1000);
+        }
+      } else {
+        startPreloader();
+      }
+    }
 
-    <section class="home" id="home">
+    window.addEventListener('load', type);
 
-        <h3>hi there...</h3>
-        <h3 class="name">my name is <span>Dineshkumar</span></h3>
-        <h3 class="post">i am <span class="typing-text">B.Tech IT</span></h3>
+    function startPreloader() {
+      const textPreloader = document.getElementById('textPreloader');
+      const preloader = document.getElementById('preloader');
+      const topPanel = document.getElementById('topPanel');
+      const bottomPanel = document.getElementById('bottomPanel');
+      const content = document.getElementById('content');
 
-        <a href="https://paletteproacademy.com/documentation/form.html"><button class="btn">hire me</button></a>
+      setTimeout(() => {
+        textPreloader.style.opacity = '0';
+        setTimeout(() => {
+          textPreloader.style.display = 'none';
+          topPanel.style.transform = 'translateY(-100%)';
+          bottomPanel.style.transform = 'translateY(100%)';
+          setTimeout(() => {
+            preloader.style.display = 'none';
+            content.style.display = 'flex';
+          }, 1000);
+        }, 1000);
+      }, 100);
+    }
 
-        <div class="share">
-            <a href="https://github.com/dk1p" class="fab fa-github"></a>
-            <a href="https://instagram.com/_dk1_p_?igshid=YmMyMTA2M2Y=" class="fab fa-instagram"></a>
-            <a href="https://www.linkedin.com/in/dineshkumar1010" class="fab fa-linkedin"></a>
-        </div>
+    // Redirect to another page on button click
+    document.getElementById('scrollButton').addEventListener('click', () => {
+      window.location.href = 'profile.html'; // Change to your slideshow page
+    });
+  </script>
 
-    </section>
-
-    <section class="about" id="about">
-
-        <h1 class="heading">about me</h1>
-
-        <div class="content">
-            <h3 class="name">my name is <span>Dineshkumar</span></h3>
-            <p>I'm passionate about developing and learning new languages. I want to be in the developing world where I can utilize my skills for the betterment of the organization as well as the society.</p>
-            <p>My strength is my love for technology. Also, a person who believes in working hard so that we may achieve our goals efficiently. Looking forward to working in different environments so that I can expand my knowledge.</p>
-        </div>
-
-        <div class="skills">
-            <h1 class="heading">SKILLS</h1> 
-            <div class="progress">
-                <h3>html</h3>
-            </div>
-            <div class="progress">
-                <h3>css</h3>
-            </div>
-            <div class="progress">
-                <h3>javascript </h3>
-            </div>
-            <div class="progress">
-                <h3>java </h3>
-            </div>
-        </div>
-        <div>
-            <div class="box">
-                <a href="DK Resume.pdf" class="btn">Download CV</a>
-            </div>
-        </div>
-
-    </section>
-
-    <section class="education" id="education">
-
-        <h1 class="heading">my education</h1>
-
-        <div class="box-container">
-
-            <div class="box">
-                <div class="year">2016 - 2017</div>
-                <h3>Secondary School Leaving Certificate</h3>
-                <p>Shri Valli Vidyalaya matriculation school.</p>
-                    <p>2015-2016 Class X </p>
-                    <h4>|Board Exam- 88%</h4>
-            </div>
-
-            <div class="box">
-                <div class="year">2019 - 2023</div>
-                <h3>Bachelor Degree</h3>
-                <h3>Bachelor of Technology</h3>
-                <p>B.Tech INFORMATION TECHNOLOGY</p>
-                <p>Velammal College Of Engineering and Technology</p>
-                <h4>|CGPA-8.05%</h4>
-            </div>
-
-            <div class="box">
-                <div class="year">2018 - 2019</div>
-                <h3>Higher Secondary School Certificate</h3>
-                <p>Vidhya vikashini matriculation higher secondary school.</p>
-                <p>2017-2019 Class XII</p>
-                <h4>|Board Exam- 69.17%</h4>
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="Project" id="Project">
-
-        <h1 class="heading">my project</h1>
-
-        <div class="box-container">
-
-            <div class="box">
-                <h2>Creating Own Profile</h2>
-                <p>created my own profile website for my knowledge and I host in online</p>
-                <P>LINK:
-                <a href="https://dkprofilo.netlify.app/" class="btn">Open</a></P>
-            </div>
-
-            <div class="box">
-                <h2>Online Mobile website</h2>
-                <p>created my own website for online mobile sales and services and I host it.</p>
-                <P>LINK:
-                    <a href="https://dkmobiles.netlify.app/" class="btn">Open</a></P>
-            </div>
-
-            <div class="box">
-                <h2>Online Food services</h2>
-                <p>created my own website for online Food delivery services and I host it</p>
-                <P>LINK:
-                    <a href="https://dkfoods.netlify.app/" class="btn">Open</a></P>
-            </div>
-            <div class="box">
-                <h2>Weather in Your City</h2>
-                <p>created my own website for check Weather in Your City and I host in online</p>
-                <P>LINK:
-                <a href="https://current-weather-condition.netlify.app/" class="btn">Open</a></P>
-            </div>
-
-
-        </div>
-
-    </section>
-
-    <section class="contact" id="contact">
-
-        <h1 class="heading">contact me</h1>
-
-        <div class="row">
-
-            <form action="submit.php" method="post" class="appointment-form ftco-animate">
-                <input type="text" class="box" placeholder="first name">
-                <input type="text" class="box" placeholder="last name">
-                <input type="email" class="box" placeholder="your email">
-                <input type="number" class="box" placeholder="Mobile number">
-                <textarea name="" id="" cols="30" rows="10" class="box message" placeholder="message"></textarea>
-                <input type="submit" value="message" class="btn">
-            </form>
-
-            <div class="content">
-                <div class="icons">
-                    <a href="https://maps.app.goo.gl/pM1aFvFnBt2vSb9s8"><h3><i class="fas fa-map-marker-alt"></i> address-</h3></a>
-                    <a href="https://maps.app.goo.gl/pM1aFvFnBt2vSb9s8"><h3><i class="fas fa-map-marker-alt"></i><p>222,KNP subramainyan nagar,7th cross street,pudur main road,Tirupur</p></a>
-                </div>
-                <div class="icons">
-                    <h3><i class="fas fa-envelope"></i> email- </h3>
-                    <a href="dineshkumarpdk33@gmail.com">dineshkumarpdk33</a>
-                </div>
-                <div class="icons">
-                    <a href="tel:9566385653"><h3><i class="fas fa-phone"></i> phone- </h3></a>
-                    <h3>+91<p>- 6369513109</p></h3>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-</div>
-
-
-
-<div class="theme-toggler">
-    <span style="background:linear-gradient(rgb(7, 200, 248), rgb(102, 106, 232))"></span>
-    <span style="background: linear-gradient(deeppink, purple);"></span>
-    <span style="background: linear-gradient(lightgreen, crimson);"></span>
-    <span style="background:linear-gradient(blueviolet, deeppink)"></span>
-    <span style="background:linear-gradient(coral, blueviolet)"></span>
-    <span style="background:linear-gradient(rgb(112, 111, 111), #111)"></span>
-</div>
-
-<script>
-	window.addEventListener('hashchange', e => {
-		history.replaceState({}, "", location.hash.slice(1));
-	});
-</script>
-<script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
-<script src="script.js"></script>
 </body>
 </html>
