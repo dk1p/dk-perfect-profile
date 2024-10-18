@@ -1,36 +1,43 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collect form data
-    $name = htmlspecialchars($_POST['name']);
-    $service = htmlspecialchars($_POST['service']);
-    $phone = htmlspecialchars($_POST['phone']);
-    $date = htmlspecialchars($_POST['date']);
-    $time = htmlspecialchars($_POST['time']);
-    $message = htmlspecialchars($_POST['message']);
+    // Get form data
+    $name = htmlspecialchars(trim($_POST['firstName']));
+    $phone = htmlspecialchars(trim($_POST['userPhone']));
+    $email = htmlspecialchars(trim($_POST['userEmail']));
+    $message = htmlspecialchars(trim($_POST['userMessage']));
 
-    // Email details
+    // Validate email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Invalid email format";
+        exit();
+    }
+
+    // Email information
     $to = "dineshkumarpdk33@gmail.com"; // Replace with your email address
-    $subject = "New Appointment Request";
-    
-    $body = "New appointment request:\n\n";
-    $body .= "Name: $name\n";
-    $body .= "Service: $service\n";
-    $body .= "Phone: $phone\n";
-    $body .= "Date: $date\n";
-    $body .= "Time: $time\n";
-    $body .= "Message: $message\n";
+    $subject = "New Contact Form Submission";
+    $headers = "From: " . $email . "\r\n";
+    $headers .= "Reply-To: " . $email . "\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-    // Additional headers
-    $headers = "From: no-reply@example.com"; // Replace with a valid from address
+    // Message content
+    $emailContent = "
+        <html>
+        <body>
+            <h2>Contact Form Submission</h2>
+            <p><strong>Name:</strong> $name</p>
+            <p><strong>Phone:</strong> $phone</p>
+            <p><strong>Email:</strong> $email</p>
+            <p><strong>Message:</strong></p>
+            <p>$message</p>
+        </body>
+        </html>
+    ";
 
     // Send email
-    if (mail($to, $subject, $body, $headers)) {
-        echo "Thank you for your request. We will get back to you soon.";
+    if (mail($to, $subject, $emailContent, $headers)) {
+        echo "Message sent successfully!";
     } else {
-        echo "Sorry, something went wrong. Please try again.";
+        echo "Message could not be sent!";
     }
-} else {
-    echo "Invalid request.";
 }
 ?>
-
